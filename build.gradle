@@ -1,0 +1,43 @@
+buildscript {
+    ext.kotlinVersion = '1.2.30'
+    ext.lwjglVersion = '3.1.6'
+
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    }
+}
+
+version '1.0-SNAPSHOT'
+
+apply plugin: 'kotlin'
+apply plugin: 'application'
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compile group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jdk8', version: kotlinVersion
+    // https://mvnrepository.com/artifact/org.lwjgl/lwjgl
+    compile group: 'org.lwjgl', name: 'lwjgl', version: lwjglVersion
+    compile group: 'org.lwjgl', name: 'lwjgl', version: lwjglVersion, classifier: 'natives-windows'
+    // https://mvnrepository.com/artifact/org.lwjgl/lwjgl-glfw
+    compile group: 'org.lwjgl', name: 'lwjgl-glfw', version: lwjglVersion
+    compile group: 'org.lwjgl', name: 'lwjgl-glfw', version: lwjglVersion, classifier: 'natives-windows'
+    // https://mvnrepository.com/artifact/org.lwjgl/lwjgl-opengl
+    compile group: 'org.lwjgl', name: 'lwjgl-opengl', version: lwjglVersion
+    compile group: 'org.lwjgl', name: 'lwjgl-opengl', version: lwjglVersion, classifier: 'natives-windows'
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+mainClassName = 'test.HelloWorldKt'
